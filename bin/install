@@ -30,14 +30,20 @@ install() {
 
   echo "Downloading transcend-io/terragrunt-atlantis-config from ${download_url}"
 
-  STATUSCODE=$(curl -q --write-out "%{http_code}" -L -C - "$download_url" | tar zx --strip-components=1 --to-stdout ${tool_name}_${version}_${platform}_${arch} > ${bin_path})
+  local tmpdir=$(mktemp -d)
+  pushd $tmpdir
+  STATUSCODE=$(curl -q --write-out "%{http_code}" -L -C - "$download_url" -o download.tar.gz)
 
   if test "${STATUSCODE}" -ne 200; then
     echo "Binary for version '${version}' was not found or could not be retrieved."
     exit 1
+  else
+    tar vzxf download.tar.gz --strip-components=1 ${tool_name}_${version}_${platform}_${arch}
+    mv ${tool_name}_${version}_${platform}_${arch} ${bin_path}
+    chmod +x "$bin_path"
   fi
-
-  chmod +x "$bin_path"
+  popd
+  rm -rf $tmpdir
 }
 
 install "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
