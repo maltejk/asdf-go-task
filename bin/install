@@ -13,8 +13,9 @@ install() {
   local version=$2
   local install_path=$3
 
+  local tool_name="terragrunt-atlantis-config"
   local bin_install_path="$install_path/bin"
-  local bin_path="${bin_install_path}/terragrunt"
+  local bin_path="${bin_install_path}/${tool_name}"
 
   local platform
   [ "Linux" = "$(uname)" ] && platform="linux" || platform="darwin"
@@ -22,13 +23,13 @@ install() {
   [ "x86_64" = "$(uname -m)" ] && arch="amd64" || arch="386"
 
   local download_url
-  download_url="https://github.com/gruntwork-io/terragrunt/releases/download/v${version}/terragrunt_${platform}_${arch}"
+  download_url="https://github.com/transcend-io/terragrunt-atlantis-config/releases/download/v${version}/${tool_name}_${version}_${platform}_${arch}.tar.gz"
 
   mkdir -p "${bin_install_path}"
 
-  echo "Downloading terragrunt from ${download_url}"
+  echo "Downloading transcend-io/terragrunt-atlantis-config from ${download_url}"
 
-  STATUSCODE=$(curl -q --write-out "%{http_code}" -Lo "$bin_path" -C - "$download_url")
+  STATUSCODE=$(curl -q --write-out "%{http_code}" -L -C - "$download_url" | tar zx --strip-components=1 --to-stdout ${tool_name}_${version}_${platform}_${arch} > ${bin_path})
 
   if test "${STATUSCODE}" -ne 200; then
     echo "Binary for version '${version}' was not found or could not be retrieved."
