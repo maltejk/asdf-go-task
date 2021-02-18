@@ -13,7 +13,7 @@ install() {
   local version=$2
   local install_path=$3
 
-  local tool_name="terragrunt-atlantis-config"
+  local tool_name="task"
   local bin_install_path="$install_path/bin"
   local bin_path="${bin_install_path}/${tool_name}"
 
@@ -23,11 +23,11 @@ install() {
   [ "x86_64" = "$(uname -m)" ] && arch="amd64" || arch="386"
 
   local download_url
-  download_url="https://github.com/transcend-io/terragrunt-atlantis-config/releases/download/v${version}/${tool_name}_${version}_${platform}_${arch}.tar.gz"
+  download_url="https://github.com/go-task/task/releases/download/v${version}/${tool_name}_${platform}_${arch}.tar.gz"
 
   mkdir -p "${bin_install_path}"
 
-  echo "Downloading transcend-io/terragrunt-atlantis-config from ${download_url}"
+  echo "Downloading go-task/task from ${download_url}"
 
   local tmpdir=$(mktemp -d)
   pushd $tmpdir
@@ -37,8 +37,8 @@ install() {
     echo "Binary for version '${version}' was not found or could not be retrieved."
     exit 1
   else
-    tar zxf download.tar.gz --strip-components=1 ${tool_name}_${version}_${platform}_${arch}
-    mv ${tool_name}_${version}_${platform}_${arch} ${bin_path}
+    tar zxf download.tar.gz --strip-components=1 ${tool_name}
+    mv ${tool_name} ${bin_path}
     chmod +x "$bin_path"
   fi
   popd
