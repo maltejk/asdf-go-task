@@ -3,4 +3,4 @@
 # lifted shamelessly from the hashicorp-tools plugin pretty much a
 # copy/paste with changed strings variable names.
 # See https://github.com/Banno/asdf-hashicorp for the original source
-echo ".terragrunt-version"
+echo ".terragrunt-atlantis-config-version"

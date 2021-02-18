@@ -5,7 +5,7 @@
 # See https://github.com/Banno/asdf-hashicorp for the original source
 get_legacy_version() {
     local -r current_directory="$1"
-    local -r tg_version_file="${current_directory}/.terragrunt-version"
+    local -r tg_version_file="${current_directory}/.terragrunt-atlantis-config-version"
 
     # Get version from .terragrunt-version file (used by tgenv)
     if [[ -r ${tg_version_file} ]]; then
