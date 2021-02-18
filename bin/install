@@ -30,18 +30,18 @@ install() {
   echo "Downloading go-task/task from ${download_url}"
 
   local tmpdir=$(mktemp -d)
-  pushd $tmpdir
+  pushd $tmpdir > /dev/null
   STATUSCODE=$(curl -q --write-out "%{http_code}" -L -C - "$download_url" -o download.tar.gz)
 
   if test "${STATUSCODE}" -ne 200; then
     echo "Binary for version '${version}' was not found or could not be retrieved."
     exit 1
   else
-    tar zxf download.tar.gz --strip-components=1 ${tool_name}
+    tar zxf download.tar.gz ${tool_name}
     mv ${tool_name} ${bin_path}
     chmod +x "$bin_path"
   fi
-  popd
+  popd > /dev/null
   rm -rf $tmpdir
 }
 
