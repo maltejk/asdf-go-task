@@ -7,6 +7,7 @@ set -euo pipefail
 [ -z "${ASDF_INSTALL_PATH+x}" ] && echo "ASDF_INSTALL_PATH is required" && exit 1
 
 install() {
+  set +x
   local install_type=$1
   [ "$install_type" != "version" ] && echo "install type, $install_type, is not supported" && exit 1
 
