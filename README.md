@@ -1,8 +1,6 @@
-# asdf-terragrunt
+# asdf-terragrunt-atlantis-config
 
-[![Build Status](https://github.com/lotia/asdf-terragrunt/workflows/CI/badge.svg)](https://github.com/lotia/asdf-terragrunt/actions?query=workflow%3ACI)
+Based on [lotia/asdf-terragrunt](https://github.com/lotia/asdf-terragrunt), thanks.
 
-Originally from [td7x / asdf / terragrunt on gitlab](https://gitlab.com/td7x/asdf/terragrunt) where it no longer appears to be maintained.
-
-[Terragrunt](https://github.com/gruntwork-io/terragrunt) plugin for the [asdf](https://github.com/asdf-vm/asdf) version manager.
+[terragrunt-atlantis-config](https://github.com/transcend-io/terragrunt-atlantis-config) plugin for the [asdf](https://github.com/asdf-vm/asdf) version manager.
 Check out the [asdf](https://github.com/asdf-vm/asdf) readme for instructions.
