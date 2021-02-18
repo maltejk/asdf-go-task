@@ -7,7 +7,6 @@ set -euo pipefail
 [ -z "${ASDF_INSTALL_PATH+x}" ] && echo "ASDF_INSTALL_PATH is required" && exit 1
 
 install() {
-  set -x
   local install_type=$1
   [ "$install_type" != "version" ] && echo "install type, $install_type, is not supported" && exit 1
 
@@ -38,7 +37,7 @@ install() {
     echo "Binary for version '${version}' was not found or could not be retrieved."
     exit 1
   else
-    tar vzxf download.tar.gz --strip-components=1 ${tool_name}_${version}_${platform}_${arch}
+    tar zxf download.tar.gz --strip-components=1 ${tool_name}_${version}_${platform}_${arch}
     mv ${tool_name}_${version}_${platform}_${arch} ${bin_path}
     chmod +x "$bin_path"
   fi
